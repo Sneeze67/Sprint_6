@@ -5,6 +5,8 @@ class MainPageLocators:
     order_button_top = [By.XPATH,'.//div[contains(@class,"Header_Nav")]//button[contains(@class,"Button")]']
     order_button_bottom = [By.XPATH,'.//button[contains(@class,"Button_Middle")]']
     COOKIE_BTN = [By.XPATH,'.//button[contains(@class,"App_CookieButton")]']
+    scooter_logo = (By.XPATH, "//img[@alt='Scooter']")
+    dzen_header =(By.XPATH, './/header[@aria-label = "Шапка сайта"]') 
     
     @staticmethod
     def faq_locator(locator_id):

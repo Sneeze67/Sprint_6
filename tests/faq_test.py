@@ -2,8 +2,11 @@ import allure
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 import pytest
+import sys
+import os
+sys.path += [os.path.dirname(os.path.dirname(__file__)) + p for p in ['', '/pages', '/locators', '/data']]
 from main_page import MainPage
-from Locators.main_page_locators import MainPageLocators
+from main_page_locators import MainPageLocators
 from data import FAQidAndAnswers
 from urls import Urls
 

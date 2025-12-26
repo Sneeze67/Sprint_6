@@ -40,6 +40,14 @@ class OrderPage(BasePage):
     def set_rental_period(self, rental_period):
         self.wait_and_find_element(OrderPageLocators.TIME_PERIOD_INPUT).click()
         self.wait_and_find_element(OrderPageLocators.choose_period(rental_period)).click()
+    
+    @allure.step('Выбираем цвет самоката')
+    def set_color(self,color):
+        self.wait_and_find_element(OrderPageLocators.choose_type(color)).click()
+
+    @allure.step('Оставляем комментарий курьеру')
+    def leave_comment(self,courier_comment):
+        self.wait_and_find_element(OrderPageLocators.COURIER_COMMENT_INPUT).send_keys(courier_comment)
 
     @allure.step('Кликаем кнопку заказать')
     def click_order_button(self):
@@ -51,10 +59,10 @@ class OrderPage(BasePage):
 
     @allure.step('Находим кнопку Статус Заказа')
     def find_status_button(self):
-        return self.wait_and_find_element(OrderPageLocators.STATUS_BTN).is_displayed()
+        return self.wait_and_find_element(OrderPageLocators.STATUS_BUTTON).is_displayed()
 
     @allure.step('Заказываем самокат')
-    def order_scooter(self, name, surname, address, metro_station, phone, delivery_day, rental_period):
+    def order_scooter(self, name, surname, address, metro_station, phone, delivery_day, rental_period,color,courier_comment):
         self.set_name(name)
         self.set_second_name(surname)
         self.set_address(address)
@@ -63,5 +71,7 @@ class OrderPage(BasePage):
         self.click_continue_button()
         self.set_delivery_date(delivery_day)
         self.set_rental_period(rental_period)
+        self.set_color(color)
+        self.leave_comment(courier_comment)
         self.click_order_button()
         self.click_confirm_button()

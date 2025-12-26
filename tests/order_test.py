@@ -1,9 +1,12 @@
 import allure
 import pytest
-from Sprint6.data import OrderTestData
-from Locators.main_page_locators import MainPageLocators
-from pages.order_page import OrderPage
-from pages.main_page import MainPage
+import sys
+import os
+sys.path += [os.path.dirname(os.path.dirname(__file__)) + p for p in ['', '/pages', '/locators', '/data']]
+from data import OrderTestData
+from main_page_locators import MainPageLocators
+from order_page import OrderPage
+from main_page import MainPage
 from urls import Urls 
 
 
@@ -32,10 +35,10 @@ class TestOrder:
     
     @allure.title('Полная процедура заказа самоката, 2 варианта данных')
     @pytest.mark.parametrize(OrderTestData.param, OrderTestData.value)
-    def test_order_scooter(self, driver, name, surname, address, metro_station, phone, delivery_day, rental_period):
+    def test_order_scooter(self, driver, name, surname, address, metro_station, phone, delivery_day, rental_period,color, courier_comment):
         page = OrderPage(driver)
         page.open_page(Urls.ORDER_PAGE)
-        page.order_scooter(name, surname, address, metro_station, phone, delivery_day, rental_period)
+        page.order_scooter(name, surname, address, metro_station, phone, delivery_day, rental_period,color,courier_comment)
         assert page.find_status_button() == True
 
 
@@ -53,5 +56,5 @@ class TestOrder:
         page.open_page(Urls.ORDER_PAGE)
         page.click_to_yandex_logo()
         page.switch_to_window(1)
-        page.wait_and_find_element(MainPageLocators.DZEN_NEWS)
+        page.wait_and_find_element(MainPageLocators.dzen_header).is_displayed()
         assert page.get_current_url() == Urls.DZEN_URL
