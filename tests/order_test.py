@@ -1,12 +1,9 @@
 import allure
 import pytest
-import sys
-import os
-sys.path += [os.path.dirname(os.path.dirname(__file__)) + p for p in ['', '/pages', '/locators', '/data']]
 from data import OrderTestData
-from main_page_locators import MainPageLocators
-from order_page import OrderPage
-from main_page import MainPage
+from Locators.main_page_locators import MainPageLocators
+from pages.order_page import OrderPage
+from pages.main_page import MainPage
 from urls import Urls 
 
 
