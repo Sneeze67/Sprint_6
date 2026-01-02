@@ -1,8 +1,7 @@
 import allure
 from selenium.webdriver.support.wait import WebDriverWait
 import pytest
-from main_page import MainPage
-from base_page import BasePage
+from pages.base_page import BasePage
 from Locators.order_page_locators import OrderPageLocators 
 
 class OrderPage(BasePage):
